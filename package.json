@@ -1,0 +1,115 @@
+{
+  "name": "cursor-unchained",
+  "displayName": "Cursor Unchained",
+  "description": "Bring Cursor's legendary Tab completion to VS Code!",
+  "version": "0.0.3",
+  "publisher": "henkdz",
+  "engines": {
+    "vscode": "^1.107.0"
+  },
+  "categories": [
+    "Machine Learning",
+    "Other",
+    "Snippets"
+  ],
+  "keywords": [
+    "cursor",
+    "autocomplete",
+    "completion",
+    "ai",
+    "copilot",
+    "tab-complete",
+    "code-completion",
+    "intellisense"
+  ],
+  "icon": "src/lib/assets/cursor-unchained.png",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension/extension.cjs",
+  "contributes": {
+    "configuration": {
+      "title": "Cursor Unchained",
+      "properties": {
+        "cursorUnchained.cursorBearerToken": {
+          "type": "string",
+          "default": "",
+          "description": "Cursor API Bearer Token (JWT) - Get this from Cursor Developer Tools"
+        },
+        "cursorUnchained.cursorClientVersion": {
+          "type": "string",
+          "default": "2.2.44",
+          "description": "Cursor client version (e.g., '2.2.44')"
+        },
+        "cursorUnchained.requestId": {
+          "type": "string",
+          "default": "",
+          "description": "Request ID header value - Get this from Cursor Developer Tools"
+        },
+        "cursorUnchained.sessionId": {
+          "type": "string",
+          "default": "",
+          "description": "Session ID header value - Get this from Cursor Developer Tools"
+        },
+        "cursorUnchained.modelName": {
+          "type": "string",
+          "enum": ["fast", "slow"],
+          "default": "fast",
+          "description": "Model selection: 'fast' for speed, 'slow' for accuracy"
+        },
+        "cursorUnchained.debounceDelay": {
+          "type": "number",
+          "default": 300,
+          "minimum": 0,
+          "maximum": 2000,
+          "description": "Delay in milliseconds before requesting completion"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "cursorUnchained.authenticate",
+        "title": "Credentials Manager: Configure Cursor API Credentials",
+        "category": "Cursor Unchained"
+      },
+      {
+        "command": "cursorUnchained.showConfig",
+        "title": "Show Configuration Info",
+        "category": "Cursor Unchained"
+      },
+      {
+        "command": "cursorUnchained.triggerCompletion",
+        "title": "Trigger Tab Completion",
+        "category": "Cursor Unchained"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "node scripts/buildExtension.cjs && npm run vsce:package",
+    "vscode:build": "node scripts/buildExtension.cjs",
+    "vscode:package": "npx vsce package",
+    "compile": "tsc -p tsconfig.extension.json",
+    "watch": "tsc -w -p tsconfig.extension.json",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.107.0",
+    "@vscode/vsce": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "protobufjs": "^7.2.0",
+    "long": "^5.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HenkDz/cursor-uncianed-vscode-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HenkDz/cursor-uncianed-vscode-extension/issues"
+  },
+  "homepage": "https://github.com/HenkDz/cursor-uncianed-vscode-extension#readme",
+  "license": "MIT",
+  "markdown": "github"
+}
