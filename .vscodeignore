@@ -1,0 +1,21 @@
+.vscode/**
+.vscode-test/**
+.svelte-kit/**
+static/**
+node_modules/**
+.dts/
+scripts/**/*
+assets/**
+*.md
+.gitignore
+env.example
+
+!src/lib/**
+!dist/**/*
+
+# Keep extension runtime deps (vsce prunes dev deps)
+!node_modules/protobufjs/**
+!node_modules/@protobufjs/**
+!node_modules/long/**
+
+
